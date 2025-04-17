@@ -1,12 +1,12 @@
 import RPi.GPIO as GPIO
-import funcs
+import decimal2binary as d2b
 
 GPIO.setwarnings(False)
 
-dac = [26, 19, 13, 6, 5, 11, 9, 10]
+dac = []
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(dac, GPIO.OUT)
+GPIO.setmode(     GPIO.BCM)
+GPIO.setup  (dac, GPIO.OUT)
 
 try:
     while True:
@@ -14,7 +14,7 @@ try:
         try:
             num = int(num)
             if 0 <= num <= 255:
-                GPIO.output(dac, funcs.dec2bin(num))
+                GPIO.output(dac, d2b.dec2bin(num))
                 voltage = float(num) / 256.0 * 3.3
                 print(f"Output voltage is about {voltage:.4} volt")
             else:

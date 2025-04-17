@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
-from funcs import dec2bin
+import decimal2binary as d2b
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -19,7 +19,7 @@ try:
     period = float(input("Type a period for sygnal: "))
 
     while True:
-        GPIO.output(dac, dec2bin(x))
+        GPIO.output(dac, d2b.decimal2binary(x))
 
         if   x == 0:    inc_flag = 1
         elif x == 255:  inc_flag = 0
