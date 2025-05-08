@@ -43,12 +43,12 @@ data_times = []
 try:
     start_time = time.time()
     val = 0
-while(val < 250):
-    val = adc()
-    print(" v1 = {:3}".format(val / levels * maxV))
-    num2_dac_leds(val)
-    data_volts.append(val)
-    data_times.append(time.time() - start_time)
+    while(val < 250):
+        val = adc()
+        print(" v1 = {:3}".format(val / levels * maxV))
+        num2_dac_leds(val)
+        data_volts.append(val)
+        data_times.append(time.time() - start_time)
 
     GPIO.output(troyka, 1)
 
@@ -73,11 +73,11 @@ finally:
     GPIO.output(troyka, GPIO.LOW)
     GPIO.cleanup()
 
-data_times_str = [str(item) for item in data_times]
+    data_times_str = [str(item) for item in data_times]
     data_volts_str = [str(item) for item in data_volts]
 
 with open("data.txt", "w") as file:
-file.write("\n".join(data_volts_str))
+    file.write("\n".join(data_volts_str))
 
 plt.plot(data_times, data_volts)
 plt.show()
